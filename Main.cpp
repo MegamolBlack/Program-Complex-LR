@@ -5,6 +5,8 @@
 #include <cstdlib>
 #include "DynamicLibrary.h"
 
+//Файл в ветви MAIN
+
 //Пространство имен
 using namespace std;
 
