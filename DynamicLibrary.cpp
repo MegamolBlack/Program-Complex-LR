@@ -5,8 +5,15 @@
 
 using namespace std;
 
+/// @brief Переменная TEMP[] хранит в себе значения в процессе выполнения определенных функций
 std::string TEMP[100];
 
+/// @brief Функция выполняющая первоначальную инициализацию
+/// @param *Data массив данных текущих слов
+/// @param leinght длинна массива Data
+/// @param PositionWordIn переменная содержащая позицию первого слова
+/// @param PositionWordOut переменная содержащая позицию второго слова
+/// @return Ничего
 void AddDataFiles(string *Data,int leinght, int PositionWordIn, int PositionWordOut) {
     PositionWordIn--;
     PositionWordOut--;
@@ -21,13 +28,20 @@ void AddDataFiles(string *Data,int leinght, int PositionWordIn, int PositionWord
     }
     else {
         cout << endl;
-        cout << "������ �������! �������/� ������������ �������!\n";
+        cout << "Îøèáêà ðàñ÷åòà! Âûáðàíû/à íåïðàâèëüíàÿ ïîçèöèÿ!\n";
         cout << endl;
         system("pause");
     }
 
 }
 
+/// @brief Функция выполняющая первоначальную инициализацию
+/// @param *Data массив данных текущих слов
+/// @param leinght длинна массива Data
+/// @param PositionWord переменная содержащая позицию слова в массиве
+/// @param NumberSlice1 переменная содержащая первую позицию для разрезки слова
+/// @param NumberSlice2 переменная содержащая вторую позицию для разрезки слова
+/// @return Ничего
 void SliceDataFiles(string* Data, int leinght, int PositionWord, int NumberSlice1, int NumberSlice2) {
     PositionWord--;
 
@@ -39,12 +53,18 @@ void SliceDataFiles(string* Data, int leinght, int PositionWord, int NumberSlice
     }
     else {
         cout << endl;
-        cout << "������ �������!\n";
+        cout << "Îøèáêà ðàñ÷åòà!\n";
         cout << endl;
         system("pause");
     }
 }
 
+/// @brief Функция выполняющая первоначальную инициализацию
+/// @param *Data массив данных текущих слов
+/// @param leinght длинна массива Data
+/// @param Position1 переменная содержащая позицию первого слова
+/// @param Position2 переменная содержащая позицию второго слова
+/// @return Ничего
 void SwapDataFiles(string *Data, int leinght, int Position1, int Position2) {
     for (int i = 0; i < leinght; i++) {
         TEMP[i] = Data[i];
@@ -61,7 +81,7 @@ void SwapDataFiles(string *Data, int leinght, int Position1, int Position2) {
     }
     else {
         cout << endl;
-        cout << "������ ������������!\n";
+        cout << "Îøèáêà ïåðåñòàíîâêè!\n";
         cout << endl;
         system("pause");
     }
