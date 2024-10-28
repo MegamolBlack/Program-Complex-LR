@@ -14,8 +14,8 @@ script:
 
 # Деплой документации на GitHub Pages
 after_success:
-  - git config --global user.name "Your Name"
-  - git config --global user.email "your_email@example.com"
+  - git config --global user.name "Program Complex"
+  - git config --global user.email "fd-df-98@bk.ru@bk.ru"
   - git clone --branch gh-pages https://<GITHUB_TOKEN>@github.com/<username>/<имя проекта>.io.git ./docs
   - cp -r html/* ./docs/
   - cd docs
