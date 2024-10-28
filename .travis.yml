@@ -1,0 +1,24 @@
+language: cpp  # Укажите язык C++
+compiler:
+  - gcc
+  - clang
+
+# Установите Doxygen
+before_install:
+  - sudo apt-get update
+  - sudo apt-get install -y doxygen
+
+# Команды для генерации документации
+script:
+  - doxygen Doxyfile  # Предполагается, что Doxyfile находится в корне проекта
+
+# Деплой документации на GitHub Pages
+after_success:
+  - git config --global user.name "Your Name"
+  - git config --global user.email "your_email@example.com"
+  - git clone --branch gh-pages https://<GITHUB_TOKEN>@github.com/<username>/<имя проекта>.io.git ./docs
+  - cp -r html/* ./docs/
+  - cd docs
+  - git add .
+  - git commit -m "Обновление документации"
+  - git push origin gh-pages
