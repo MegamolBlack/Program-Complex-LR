@@ -1,24 +1,70 @@
-language: cpp  # Укажите язык C++
-compiler:
-  - gcc
-  - clang
+language: cpp
 
-# Установите Doxygen
+sudo: required
+
+branches:
+    only:
+      - main
+
+stages:
+  - "Building"
+  - name: "Deployment"
+    if: branch = main
+
+env:
+  - BUILD_TYPE=release
+              
 before_install:
-  - sudo apt-get update
-  - sudo apt-get install -y doxygen
+  - source .travis/${TRAVIS_OS_NAME}/before_install.sh
 
-# Команды для генерации документации
+install:
+  - source .travis/${TRAVIS_OS_NAME}/install.sh
+
+before_script:
+  - source version.sh
+
 script:
-  - doxygen Doxyfile  # Предполагается, что Doxyfile находится в корне проекта
+  - source .travis/${TRAVIS_OS_NAME}/building.sh
+  - source .travis/${TRAVIS_OS_NAME}/testing.sh
+  - source .travis/${TRAVIS_OS_NAME}/viewer.sh
 
-# Деплой документации на GitHub Pages
-after_success:
-  - git config --global user.name "Program Complex"
-  - git config --global user.email "fd-df-98@bk.ru@bk.ru"
-  - git clone --branch gh-pages https://<GITHUB_TOKEN>@github.com/<username>/<имя проекта>.io.git ./docs
-  - cp -r html/* ./docs/
-  - cd docs
-  - git add .
-  - git commit -m "Обновление документации"
-  - git push origin gh-pages
+jobs:
+    include:
+      - stage: "Building"
+      
+        name: "Windows build with MingW-W64"
+        os: windows
+        compiler: gcc
+        
+      - name: "Linux build with GCC"
+        os: linux
+        dist: xenial
+        services: xvfb
+        compiler: gcc
+        
+      - name: "Linux build with Clang"
+        os: linux
+        dist: xenial
+        compiler: clang
+        services: xvfb 
+        
+        
+      - stage: "Deployment"
+        
+        name: "Coverage statistic collect"
+        os: linux
+        dist: xenial
+        compiler: gcc
+        services: xvfb 
+        env: "BUILD_TYPE=coverage"
+        script:
+          - source .travis/${TRAVIS_OS_NAME}/building.sh
+          - source .travis/${TRAVIS_OS_NAME}/testing.sh
+          - source .travis/${TRAVIS_OS_NAME}/coverage.sh
+
+      - name: "Doxygen documentation generation"
+        os: linux
+        dist: xenial
+        env: "BUILD_TYPE=doxygen"
+        script:
+          - source .travis/${TRAVIS_OS_NAME}/doxygen.sh
