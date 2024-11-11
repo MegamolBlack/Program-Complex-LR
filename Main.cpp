@@ -5,7 +5,7 @@
 #include <cstdlib>
 #include "DynamicLibrary.h"
 
-//Файл в ветви TEST
+//Файл в ветви MAIN
 
 //Пространство имен
 using namespace std;
@@ -13,13 +13,20 @@ using namespace std;
 //Глобальные переменные
 typedef int (*function)(int a, int b);
 const int MaxLeingh = 100;
+/// @brief Массив Data содержит строку данных
 string Data[MaxLeingh];
+/// @brief Переменная FileNameInput содержит названия вхоного названия файла (например Data.txt)
 string FileNameInput = "";
+/// @brief Переменная FileNameOutput содержит названия выходного названия файла (например Data.txt)
 string FileNameOutput = "";
+/// @brief Переменная command содержит в себе текущее название вводимой команды (операции)
 string command = "";
+/// @brief lenght содержит длинну строки
 int lenght = 0;
 
 //Функция инициализации
+/// @brief Функция выполняющая первоначальную инициализацию
+/// @return Ничего
 void Initialization() {
 
     setlocale(LC_ALL, "ru");
@@ -69,6 +76,8 @@ void Initialization() {
 }
 
 // Функция вывода главного меню
+/// @brief Функция выполняющая вывод начального меню
+/// @return Ничего
 void PrintMenu() {
     system("cls");
     cout << endl;
@@ -89,6 +98,8 @@ void PrintMenu() {
 }
 
 // Функции исполнения команд
+/// @brief Функция выполняющая загрузку файла
+/// @return Ничего
 void Command1() {
     ifstream file(""); // окрываем файл для чтения
 
@@ -134,6 +145,8 @@ void Command1() {
         }
     }
 }
+/// @brief Функция выполняющая запись в файл
+/// @return Ничего
 void Command2() {
     cout << endl;
     cout << "Введите название файла для записи (пример: Data.txt): " << endl;
@@ -155,6 +168,8 @@ void Command2() {
     cout << endl;
     system("pause");
 }
+/// @brief Функция выполняющая вывод текущего загруженного массива
+/// @return Ничего
 void Command3() {
     cout << endl;
     cout << "Текущий массив: " << lenght << " элементов" << endl;
@@ -164,6 +179,8 @@ void Command3() {
     cout << endl;
     system("pause");
 }
+/// @brief Функция выполняющая соединения выбраных слов
+/// @return Ничего
 void Command4() {
     cout << endl;
     cout << "Текущий массив: " << lenght << " элементов" << endl;
@@ -195,6 +212,8 @@ void Command4() {
     cout << endl;
     system("pause");
 }
+/// @brief Функция выполняющая обрезание слов на выборанной позиции
+/// @return Ничего
 void Command5() {
     cout << endl;
     cout << "Текущий массив: " << lenght << " элементов" << endl;
@@ -227,6 +246,8 @@ void Command5() {
     cout << endl;
     system("pause");
 }
+/// @brief Функция выполняющая изменение порядка слов
+/// @return Ничего
 void Command6() {
     cout << endl;
     cout << "Текущий массив: " << lenght << " элементов" << endl;
@@ -258,6 +279,8 @@ void Command6() {
 }
 
 // Главная функция обработки
+/// @brief Главная функция выполняющая всю обработку
+/// @return Возвращает 0
 int main()
 {
     Initialization();
